@@ -1,0 +1,27 @@
+{
+  "name": "nodebackend",
+  "version": "1.0.0",
+  "description": "Let's get our first node js app ready",
+  "homepage": "https://github.com/hitpawar9298/nodebackend#readme",
+  "bugs": {
+    "url": "https://github.com/hitpawar9298/nodebackend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitpawar9298/nodebackend.git"
+  },
+  "license": "ISC",
+  "author": "Hitesh Pawar",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

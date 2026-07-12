@@ -1,29 +1,14 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const app = express();
 
-
-
-
-const server = http.createServer((req, res) => {
-    if(req.url === '/') {
-        res.setHeader('Content-Type', 'text/html');
-        res.write('<html>');
-        res.write('<head><title>Enter Message</title></head>');
-        res.write('<body><form action="/message" method="POST"><input type="text" name="message"/><button type="submit">Send</button></form></body>');
-        res.write('</html>');
-        res.end();
-        return;
-    }
-    if(req.url === '/message' && req.method === 'POST') {
-        fs.writeFileSync('message.txt', 'Dummy Text');
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head><title>My First Page</title></head>');
-    res.write('<body><h1>Hello from my Node.js Server!</h1></body>');
-    res.write('</html>');
-    res.end();
-    process.exit();
-    }
+app.use((req, res, next) => {
+    console.log('In the middleware!');
+    next(); //Allows the request to continue to the next middleware in line. If we don't call next(), the request will be stuck in this middleware and won't proceed further.
 });
 
-server.listen(5000);
+app.use((req, res, next) => {
+    console.log('In another middleware!');
+    res.send('<h1>Hello from Express!</h1>'); //This will send a response to the client and end the request-response cycle. After this, no further middleware will be executed for this request.
+});
+
+app.listen(5000);
